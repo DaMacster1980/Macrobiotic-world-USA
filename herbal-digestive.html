@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f2e9" />
+    <meta name="description" content="Browse the Macrobiotic World USA herbal and digestive collection." />
+    <title>Herbal &amp; Digestive | Macrobiotic World USA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-category="Herbal &amp; Digestive" data-page-type="category">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="announcement-bar">A thoughtful pantry, coming soon to the United States <span aria-hidden="true">✳</span></div>
+    <header class="site-header" id="top">
+      <div class="header-inner">
+        <button class="icon-button menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-lines" aria-hidden="true"></span></button>
+        <a class="wordmark" href="index.html" aria-label="Macrobiotic World USA home"><span class="wordmark-mark" aria-hidden="true">M<span>W</span></span><span class="wordmark-name">macrobiotic <span>world usa</span></span></a>
+        <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
+          <a href="index.html#collections">Shop</a><a href="mushrooms.html">Mushrooms</a><a href="superfoods.html">Superfoods</a><a href="plant-protein.html">Plant Protein</a><a href="herbal-digestive.html" aria-current="page">Herbal &amp; Digestive</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-button search-toggle" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="search-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></button>
+          <button class="icon-button account-button" type="button" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg></button>
+          <button class="cart-button" type="button" aria-label="Shopping bag, 0 items" aria-controls="cart-drawer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="cart-label">Bag</span><span class="cart-count" aria-live="polite">0</span></button>
+        </div>
+      </div>
+      <div class="search-panel" id="search-panel" hidden>
+        <label for="product-search">Search the collection</label>
+        <div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="product-search" type="search" placeholder="Try Lion’s Mane or Moringa" autocomplete="off" /><button class="search-clear" type="button" aria-label="Clear search">Clear</button></div>
+        <p class="search-feedback" aria-live="polite">Search by product name.</p>
+      </div>
+    </header>
+    <main id="main">
+      <section class="featured-section section-shell" aria-labelledby="category-title">
+        <div class="section-heading featured-heading"><div><p class="eyebrow"><span class="eyebrow-rule"></span> USA launch collection</p><h2 id="category-title">Herbal &amp; Digestive</h2></div><p class="featured-note">A considered selection from the Macrobiotic World catalogue. USA pricing is coming soon.</p></div>
+        <nav class="product-filters" aria-label="Product categories"><a class="filter-button" href="mushrooms.html">Mushrooms</a><a class="filter-button" href="superfoods.html">Superfoods</a><a class="filter-button" href="plant-protein.html">Plant Protein</a><a class="filter-button is-active" href="herbal-digestive.html" aria-current="page">Herbal &amp; Digestive</a></nav>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <p class="product-empty" hidden>No products match your search.</p>
+        <p class="price-disclaimer">USA prices have not been set. Product selection does not initiate a purchase; checkout is not connected.</p>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="footer-bottom section-shell"><a href="index.html">Macrobiotic World USA</a><span>Prices shown in USD</span><a href="#top">Back to top ↑</a></div></footer>
+    <div class="drawer-backdrop" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true" inert>
+      <div class="drawer-header"><div><p class="eyebrow"><span class="eyebrow-rule"></span> Your selection</p><h2 id="cart-title">Shopping bag <span class="drawer-count">(0)</span></h2></div><button class="drawer-close icon-button" type="button" aria-label="Close shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <div class="cart-items" aria-live="polite"></div>
+      <div class="cart-empty"><span aria-hidden="true">✳</span><p>Your bag is waiting for something good.</p><button class="continue-shopping" type="button">Continue shopping</button></div>
+      <div class="drawer-footer"><div class="subtotal-row"><span>Subtotal</span><strong class="cart-subtotal">Pending pricing</strong></div><p>Final USA prices will be added before the store opens.</p><button class="checkout-button" type="button">Checkout</button><span class="checkout-note">Checkout is not connected yet.</span></div>
+    </aside>
+    <div class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
