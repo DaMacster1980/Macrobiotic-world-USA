@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e9" />
+    <title>Manage Products | Macrobiotic World USA</title>
+    <link rel="stylesheet" href="styles.css?v=20261006" />
+    <script src="catalog-data.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page-type="product-manager">
+    <header class="site-header manager-header">
+      <div class="header-inner">
+        <a class="wordmark home-wordmark" href="index.html" aria-label="Macrobiotic World USA home">
+          <svg class="brand-leaf" viewBox="0 0 32 36" aria-hidden="true"><path d="M28 3C13 4 4 13 5 25c1 8 8 10 14 5C26 24 29 13 28 3Z"/><path d="M7 31c4-9 9-15 17-22"/></svg>
+          <span class="wordmark-name">Macrobiotic World<span>USA</span><small>Organic · Natural · Whole Foods</small></span>
+        </a>
+        <a class="manager-back-link" href="index.html">Back to homepage</a>
+      </div>
+    </header>
+    <main class="manager-main">
+      <p class="eyebrow"><span class="eyebrow-rule"></span> Your store collection</p>
+      <h1>Product admin preview</h1>
+      <p class="manager-intro">All imported products are here. Edit product details, add a new item, or switch a product on for the website and homepage.</p>
+      <div class="manager-notice">Preview controls save only in this browser. A secure store database and admin login are required before product status can change for all customers.</div>
+      <section class="manager-pricing" aria-labelledby="manager-pricing-title">
+        <div><p class="eyebrow"><span class="eyebrow-rule"></span> Pricing preparation</p><h2 id="manager-pricing-title">Plan future USA prices</h2><p>MWC source prices are kept in THB. These fields only show an estimate; they do not set a selling price.</p></div>
+        <label for="manager-markup">Possible markup (%)</label><input id="manager-markup" type="number" min="50" max="70" step="1" placeholder="Choose 50–70" />
+        <label for="manager-exchange">THB per 1 USD</label><input id="manager-exchange" type="number" min="0.0001" step="0.0001" placeholder="Enter rate later" />
+        <p id="manager-price-estimate" aria-live="polite">No USA prices are set. Confirm markup, exchange rate, and rounding before setting prices.</p>
+      </section>
+      <section class="manager-toolbar" aria-label="Find products">
+        <label class="manager-search-label" for="manager-search">Search products</label>
+        <input id="manager-search" type="search" placeholder="Type a product name…" />
+        <label class="manager-category-label" for="manager-category">Category</label>
+        <select id="manager-category">
+          <option value="all">All categories</option>
+          <option value="Mushrooms">Mushrooms</option>
+          <option value="Superfoods">Superfoods</option>
+          <option value="Plant Protein">Plant Protein</option>
+          <option value="Herbal &amp; Digestive">Herbal &amp; Digestive</option>
+        </select>
+      </section>
+      <div class="manager-add-row"><p>Make product information changes in this browser preview. The MWU store database still needs to be connected.</p><button class="button button-dark" id="manager-add-product" type="button">Add a product</button></div>
+      <datalist id="manager-category-options"></datalist>
+      <dialog class="manager-product-editor" id="manager-product-editor" aria-labelledby="manager-editor-title">
+        <form id="manager-product-form">
+          <div class="manager-editor-heading"><div><p class="eyebrow"><span class="eyebrow-rule"></span> Product catalog</p><h2 id="manager-editor-title">Edit product details</h2></div><button class="icon-button" type="button" data-editor-cancel aria-label="Close editor">×</button></div>
+          <input type="hidden" name="productId" />
+          <label for="manager-product-name">Product name</label><input id="manager-product-name" name="productName" required maxlength="180" />
+          <label for="manager-product-category">Category</label><input id="manager-product-category" name="productCategory" list="manager-category-options" required maxlength="100" />
+          <label for="manager-product-description">Product description</label><textarea id="manager-product-description" name="productDescription" rows="6"></textarea>
+          <label for="manager-product-image">Product photo URL</label><input id="manager-product-image" name="productImage" type="url" placeholder="https://…" />
+          <label for="manager-product-thb">MWC source price (THB)</label><input id="manager-product-thb" name="productPriceTHB" type="number" min="0" step="0.01" />
+          <label for="manager-product-usd">MWU selling price (USD)</label><input id="manager-product-usd" name="productPriceUSD" type="number" min="0" step="0.01" placeholder="Leave blank until confirmed" />
+          <p class="manager-editor-section">Future MWU benefit content (not shown on customer pages)</p>
+          <label for="manager-product-benefits">Potential benefits</label><textarea id="manager-product-benefits" name="productBenefits" rows="3"></textarea>
+          <label for="manager-product-disclaimer">Medical disclaimer</label><textarea id="manager-product-disclaimer" name="productDisclaimer" rows="2"></textarea>
+          <p class="manager-editor-note">Changes remain local to this browser until a secure MWU store backend is connected. MWC source descriptions need review before publishing. Benefit text remains hidden from customers.</p>
+          <div class="manager-editor-actions"><button class="button button-outline" type="button" data-editor-cancel>Cancel</button><button class="button button-dark" type="submit">Save product</button></div>
+        </form>
+      </dialog>
+      <div class="manager-summary"><p id="manager-counts" aria-live="polite"></p><p id="manager-save-status" aria-live="polite"></p></div>
+      <p class="manager-data-quality" id="manager-data-quality" aria-live="polite"></p>
+      <section id="manager-products" class="manager-product-list" aria-label="Product catalog"></section>
+      <nav id="manager-pagination" class="catalog-pagination" aria-label="Admin product pages"></nav>
+    </main>
+    <footer class="manager-footer"><a href="index.html">Return to Macrobiotic World USA</a></footer>
+  </body>
+</html>

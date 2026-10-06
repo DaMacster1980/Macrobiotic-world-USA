@@ -1,22 +1,25 @@
 # Macrobiotic World USA
 
-A responsive, dependency-free ecommerce homepage prototype for a premium natural foods store focused on customers in the United States. The project uses plain HTML, CSS and JavaScript, so it can be opened directly in a browser without installing a toolchain.
+A responsive storefront prototype for the MWU brand. It keeps the existing designed Home, Shop by Product, and Shop by Need pages, with purpose-built collection, product detail, story, recipes, detox, contact, and customer information pages.
 
-## Preview
+## Product catalog
 
-Open `index.html` in a browser. Product cards, sample prices, photography and contact/social details are placeholders for the visual prototype; no products are for sale and the newsletter form does not collect or store addresses.
+`catalog-data.js` contains 1,679 MWC product records retrieved from its public catalog on 2026-10-06. Records include product names, source descriptions, source type/category, THB reference prices, product options, source links, and MWC-hosted product photo URLs. 1,676 products had at least one image in the feed; three had none. Empty descriptions and imported copy still need review before a public launch. No MWU health benefit text has been added; benefit and disclaimer fields are reserved in each record.
 
-## Project files
+The product photos are loaded from MWC's Shopify image CDN. Confirm permission to reuse the catalog text and photos and move images to an MWU-controlled source before launch if required.
 
-- `index.html` contains the homepage structure and editable content.
-- `styles.css` contains the responsive design system and layout.
-- `script.js` contains the mobile navigation, preview bag and newsletter feedback interactions.
+## Pages
 
-## Before launch
+- `index.html` — existing MWU homepage design.
+- `shop-by-product.html` — existing design with its six featured categories alphabetized and the rest of the catalog categories added below.
+- `shop-by-need.html` — existing designed need page.
+- `collection.html?category=...` — searchable, sortable, paginated product collections.
+- `product.html?handle=...` — dynamic product detail pages with source photos and variants.
+- `manage-products.html` — browser preview for adding and editing products, setting a draft USD price, and changing sale and homepage switches. Open this page directly in the preview when you want to manage the catalog.
+- `detox-kits.html`, `about.html`, `recipes.html`, `contact.html`, `shipping-returns.html`, `privacy.html`, and `terms.html` — purpose-built brand pages.
 
-- Replace sample catalog content, prices and placeholder photography with approved assets and real product data.
-- Confirm the contact email and connect the social links.
-- Set shipping rates and delivery policies, then connect checkout and a payment provider.
-- Connect newsletter signup to an email service and add the appropriate privacy language.
+## Current limitations before real orders
 
-Product imagery and web fonts load from third-party URLs and require an internet connection. The page itself works as a local static file.
+This is still a static prototype. Product edits, USD draft prices, and admin switches save only in the current browser. They are not secure and do not update a shared catalog for other visitors. A product can be added to the preview bag after a draft USD price is entered, but checkout does not process orders. No database, authenticated admin, inventory sync, customer accounts, shipping rates, legal policies, or payment provider is connected. Prices remain unset until reviewed and entered.
+
+Before launch, connect a real commerce backend and payment provider, confirm all product copy/photos may be reused, review descriptions for the US market, set the THB/USD exchange rate and markup/rounding rule, and complete customer service, shipping, privacy, returns, and terms details.

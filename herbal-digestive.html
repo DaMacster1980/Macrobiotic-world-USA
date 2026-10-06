@@ -9,10 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20261006" />
+    <script src="catalog-data.js" defer></script>
     <script src="script.js" defer></script>
   </head>
-  <body data-category="Herbal &amp; Digestive" data-page-type="category">
+  <body data-category="Teas & Herbal Blends" data-page-type="category">
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="announcement-bar">A thoughtful pantry, coming soon to the United States <span aria-hidden="true">✳</span></div>
     <header class="site-header" id="top">
@@ -20,7 +21,7 @@
         <button class="icon-button menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span class="menu-lines" aria-hidden="true"></span></button>
         <a class="wordmark" href="index.html" aria-label="Macrobiotic World USA home"><span class="wordmark-mark" aria-hidden="true">M<span>W</span></span><span class="wordmark-name">macrobiotic <span>world usa</span></span></a>
         <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
-          <a href="index.html#collections">Shop</a><a href="mushrooms.html">Mushrooms</a><a href="superfoods.html">Superfoods</a><a href="plant-protein.html">Plant Protein</a><a href="herbal-digestive.html" aria-current="page">Herbal &amp; Digestive</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
+          <a href="index.html#collections">Shop</a><a href="mushrooms.html">Mushrooms</a><a href="superfoods.html">Superfoods</a><a href="plant-protein.html">Plant Protein</a><a href="herbal-digestive.html" aria-current="page">Herbal &amp; Digestive</a><a href="about.html">About</a><a href="contact.html">Contact</a>
         </nav>
         <div class="header-actions">
           <button class="icon-button search-toggle" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="search-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></button>
@@ -39,6 +40,7 @@
         <div class="section-heading featured-heading"><div><p class="eyebrow"><span class="eyebrow-rule"></span> USA launch collection</p><h2 id="category-title">Herbal &amp; Digestive</h2></div><p class="featured-note">A considered selection from the Macrobiotic World catalogue. USA pricing is coming soon.</p></div>
         <nav class="product-filters" aria-label="Product categories"><a class="filter-button" href="mushrooms.html">Mushrooms</a><a class="filter-button" href="superfoods.html">Superfoods</a><a class="filter-button" href="plant-protein.html">Plant Protein</a><a class="filter-button is-active" href="herbal-digestive.html" aria-current="page">Herbal &amp; Digestive</a></nav>
         <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <nav id="catalog-pagination" class="catalog-pagination" aria-label="Product pages"></nav>
         <p class="product-empty" hidden>No products match your search.</p>
         <p class="price-disclaimer">USA prices have not been set. Product selection does not initiate a purchase; checkout is not connected.</p>
       </section>

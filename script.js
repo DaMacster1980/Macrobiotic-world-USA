@@ -15,43 +15,323 @@ const productGrid = document.querySelector("#product-grid");
 const productEmpty = document.querySelector(".product-empty");
 const homeSearchResults = document.querySelector("#search-results");
 const homeFeaturedGrid = document.querySelector("#home-featured-products");
-const catalog = [
-  { id: "organic-lions-mane-powder", name: "Organic/Bio Lion's Mane Powder", category: "Mushrooms", description: "Lion's Mane mushroom powder with a seafood-like flavor; the catalogue suggests adding it to smoothies, soups, or teas.", details: "Made from Hericium erinaceus mushroom.", ingredients: ["Lion's Mane mushroom (Hericium erinaceus)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-lions-mane-powder", image: "https://macrobioticworld.com/cdn/shop/files/lions-mane-superfood-powder-100g_17500f24-0552-4757-a468-bb8b46c52b2c_360x.png?v=1759918540" },
-  { id: "organic-reishi-powder", name: "Organic/Bio Reishi Powder", category: "Mushrooms", description: "Reishi mushroom powder with a slightly bitter, earthy flavor; listed uses include soups, teas, and smoothies.", details: "Made from Ganoderma lucidum mushroom.", ingredients: ["Reishi mushroom (Ganoderma lucidum)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-reishi-powder", image: "https://macrobioticworld.com/cdn/shop/files/reishi-mushroom-organic-bio-superfood-powder-100g_360x.png?v=1759917266" },
-  { id: "organic-chaga-powder", name: "Organic/Bio Chaga Mushroom Powder", category: "Mushrooms", description: "Chaga mushroom powder with a rich, earthy flavor; the catalogue suggests stirring it into hot water or adding it to food.", details: "Made from Inonotus obliquus. The product page lists 100% Chaga mushroom powder.", ingredients: ["Chaga mushroom (Inonotus obliquus)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-chaga-mushroom-powder", image: "https://macrobioticworld.com/cdn/shop/files/chaga-organic-bio-superfood-powder-100g_360x.png?v=1759917115" },
-  { id: "organic-turkey-tail-powder", name: "Organic/Bio Turkey Tail Mushroom Powder", category: "Mushrooms", description: "Turkey Tail mushroom powder with a mild, earthy, slightly woodsy flavor; the catalogue lists teas, smoothies, soups, and baked goods as uses.", details: "Made from Coriolus versicolor mushrooms.", ingredients: ["Turkey Tail mushroom (Coriolus versicolor)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-turkey-tail-mushroom-powder", image: "https://macrobioticworld.com/cdn/shop/files/turkey-tail-organic-bio-superfood-powder-100g_360x.png?v=1759918295" },
-  { id: "organic-cordyceps-militaris-powder", name: "Organic/Bio Cordyceps Militaris Powder", category: "Mushrooms", description: "Finely milled Cordyceps militaris powder with a rich, earthy flavor and slight umami note.", details: "The catalogue suggests mixing it into smoothies, tea, or recipes.", ingredients: ["Cordyceps militaris mushroom"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-cordyceps-militaris-powder", image: "https://macrobioticworld.com/cdn/shop/files/cordyceps-militaris-superfood-powder-100g_360x.png?v=1759918450" },
-  { id: "organic-maitake-powder", name: "Organic/Bio Maitake Powder", category: "Mushrooms", description: "Maitake mushroom powder with an earthy, umami-rich flavor; listed uses include soups, sauces, stews, and smoothies.", details: "Made from Grifola frondosa mushroom.", ingredients: ["Maitake mushroom (Grifola frondosa)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-maitake-powder", image: "https://macrobioticworld.com/cdn/shop/files/maitake-organic-bio-superfood-powder-100g_360x.png?v=1759916260" },
-  { id: "organic-shiitake-powder", name: "Organic/Bio Shiitake Mushroom Powder", category: "Mushrooms", description: "Shiitake mushroom powder with an umami, earthy, woody flavor; the catalogue suggests using it in soups, sauces, gravies, teas, or smoothies.", details: "Made from Lentinula edodes mushrooms.", ingredients: ["Shiitake mushroom (Lentinula edodes)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-shiitake-mushroom-powder", image: "https://macrobioticworld.com/cdn/shop/files/shiitake-organic-bio-superfood-powder-100g_360x.png?v=1759916340" },
-  { id: "organic-mushroom-complex-powder", name: "Organic/Bio Mushroom Complex Powder", category: "Mushrooms", description: "Bio-organic mushroom powder blend with a listed suggested use of smoothies, coffee, tea, soups, and stews.", details: "The product page says the blend typically includes Lion's Mane, Reishi, Chaga, Turkey Tail, and Shiitake, depending on batch formulation.", ingredients: ["Mushroom blend; formulation varies by batch"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-mushroom-complex-powder", image: "https://macrobioticworld.com/cdn/shop/files/mushroom-complex-organic-bio-superfood-powder-100g_360x.png?v=1759918181" },
-  { id: "12-mushroom-extract-complex", name: "12 Mushroom Extract Complex", category: "Mushrooms", description: "A 12-mushroom extract blend in 60-capsule format.", details: "The catalogue lists a serving size of 2 capsules and 30 servings per container.", ingredients: ["Oyster Mushroom", "Tremella", "Shiitake", "Poria cocos", "Reishi", "Agaricus blazei Murill", "Chaga", "Cordyceps militaris", "Lion's Mane", "Maitake", "Phellinus igniarius", "Turkey Tail"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/12-mushroom-extract-complex", image: "https://macrobioticworld.com/cdn/shop/files/41_organic-bio-12-mushroom-extract-complex-60-veggie-capsule_360x.png?v=1766140343" },
-  { id: "15-mushroom-extract-complex", name: "15 Mushroom Extract Complex", category: "Mushrooms", description: "A 15-mushroom extract blend in 60-capsule format.", details: "The catalogue lists a serving size of 2 capsules and 30 servings per container.", ingredients: ["Tremella", "Shiitake", "Cordyceps militaris", "King Trumpet", "Black Fungus", "Chaga", "Reishi", "Lion's Mane", "Agaricus blazei Murill", "Maitake", "Oyster Mushroom", "Turkey Tail", "Phellinus igniarius", "Poria cocos", "Phellinus linteus"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/15-mushroom-extract-complex", image: "https://macrobioticworld.com/cdn/shop/files/37_organic-bio-15-mushroom-extract-complex-60-veggie-capsule_360x.png?v=1766141447" },
-  { id: "organic-moringa-powder", name: "Organic/Bio Moringa Powder", category: "Superfoods", description: "Moringa powder with a subtly earthy flavor; listed uses include smoothies, salads, soups, and hot water.", details: "Made from Moringa oleifera. The catalogue lists a 100g size.", ingredients: ["Moringa (Moringa oleifera)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-moringa-powder", image: "https://cdn.shopify.com/s/files/1/0058/6157/2706/files/39.png?v=1759906820" },
-  { id: "organic-black-maca-powder", name: "Organic/Bio Black Maca Powder", category: "Superfoods", description: "Black maca root powder with a malt-like, earthy flavor; the catalogue suggests smoothies, coffee, baking, and soups.", details: "Made from Lepidium meyenii root grown in Peru.", ingredients: ["Black maca root (Lepidium meyenii)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-black-maca-powder", image: "https://macrobioticworld.com/cdn/shop/files/MacrobioticWorld_Organic_Bio_Black_Maca_Superfood_Powder_100g_360x.png?v=1759906880" },
-  { id: "organic-white-maca-powder", name: "Organic/Bio White Maca Powder", category: "Superfoods", description: "White maca powder with a mildly earthy, nutty flavor; listed uses include smoothies, oatmeal, and baked goods.", details: "Made from Lepidium meyenii grown in the high Andes of Peru.", ingredients: ["White maca (Lepidium meyenii)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-white-maca-powder", image: "https://macrobioticworld.com/cdn/shop/files/macrobioticworld-organic-bio-white-maca-superfood-powder-100g_360x.png?v=1759906877" },
-  { id: "organic-wheatgrass-powder", name: "Organic/Bio Wheatgrass Powder", category: "Superfoods", description: "Wheatgrass powder with a slightly bitter, earthy flavor reminiscent of fresh greens; the catalogue lists smoothies, salads, and water as uses.", details: "Made from young shoots of Triticum aestivum.", ingredients: ["Wheatgrass (Triticum aestivum)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-wheatgrass-powder", image: "https://macrobioticworld.com/cdn/shop/files/86_360x.png?v=1759906794" },
-  { id: "organic-spirulina", name: "Organic/Bio Spirulina Powder", category: "Superfoods", description: "Spirulina powder with an earthy taste and a hint of umami; the catalogue suggests smoothies, juices, and salads.", details: "Made from Arthrospira platensis, a blue-green algae.", ingredients: ["Spirulina (Arthrospira platensis)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-spirulina-powder", image: "https://macrobioticworld.com/cdn/shop/files/spirulina-organic-bio-superfood-powder-100g_360x.png?v=1759906840" },
-  { id: "organic-chlorella", name: "Organic/Bio Chlorella Powder", category: "Superfoods", description: "Chlorella powder with a mild, earthy flavor and deep green color; listed uses include smoothies, soups, sauces, and salads.", details: "Made from Chlorella spp. microalgae.", ingredients: ["Chlorella spp. powder"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-chlorella-powder", image: "https://macrobioticworld.com/cdn/shop/files/chlorella-organic-bio-superfood-powder-100g_360x.png?v=1759906775" },
-  { id: "organic-psyllium-husk", name: "Organic/Bio 98% Psyllium Husk", category: "Superfoods", description: "Psyllium husk with a mildly nutty flavor and gelling property, used in a variety of dishes.", details: "The product page identifies psyllium husk as derived from Plantago seeds and lists 150g and 1kg sizes.", ingredients: ["Psyllium husk (Plantago)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-98-purity-psyllium-husk-purity", image: "https://macrobioticworld.com/cdn/shop/files/PsylliumHuskBgTransparentMockup_360x.png?v=1760395873" },
-  { id: "organic-dandelion-root-powder", name: "Organic/Bio Dandelion Roots Powder", category: "Superfoods", description: "Dandelion root powder; the catalogue suggests blending into smoothies or juice, stirring into hot water, or adding to recipes.", details: "The product page lists dandelion root as the ingredient.", ingredients: ["Dandelion root"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-dandelion-roots-powder", image: "https://macrobioticworld.com/cdn/shop/files/dandelion-root-organic-bio-superfood-powder-100g_360x.png?v=1759911188" },
-  { id: "organic-milk-thistle-powder", name: "Organic/Bio Milk Thistle Powder", category: "Superfoods", description: "Milk thistle powder with a subtle, nutty flavor; the catalogue lists smoothies, juices, water, soups, and salads as uses.", details: "Made from Milk Thistle (Silybum marianum). The product page notes it contains naturally occurring silymarin.", ingredients: ["Milk Thistle (Silybum marianum)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-milk-thistle-powder", image: "https://macrobioticworld.com/cdn/shop/files/milk-thistle-organic-bio-superfood-powder-100g_360x.png?v=1759906851" },
-  { id: "organic-super-greens", name: "Organic/Bio Super Greens Superfood", category: "Superfoods", description: "Green powder blend with a mildly earthy taste and a hint of sweetness from cinnamon.", details: "The blend includes wheatgrass, barley grass, spirulina, broken chlorella, alfalfa, cinnamon, and triphala. Suggested uses include smoothies, salads, oatmeal, yogurt, water, or juice.", ingredients: ["Wheatgrass", "Barley grass", "Spirulina", "Broken chlorella", "Alfalfa", "Cinnamon", "Triphala"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-super-greens-superfood-100", image: "https://macrobioticworld.com/cdn/shop/files/SuperGreens_360x.png?v=1760395871" },
-  { id: "organic-coconut-protein", name: "Organic/Bio Coconut Protein", category: "Plant Protein", description: "Plant-based protein powder made from organic coconut meat, with a mild, nutty-sweet flavor.", details: "The product page lists 53.4g protein per 100g and a net weight of 500g.", ingredients: ["Organic coconut meat"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-coconut-protein", image: "https://macrobioticworld.com/cdn/shop/files/Coconut_Protein_500g_Mockup_360x.png?v=1761559776" },
-  { id: "organic-pumpkin-protein-65", name: "Organic/Bio Pumpkin Protein 65%", category: "Plant Protein", description: "Organic pumpkin seed protein powder with 65% protein content and a subtle nutty flavor.", details: "The catalogue suggests smoothies, baking, or sprinkling over yogurt or cereal.", ingredients: ["Pumpkin seed protein (Cucurbita)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-pumpkin-protein", image: "https://macrobioticworld.com/cdn/shop/files/Pumpkinprotein65_500g_360x.png?v=1759906910" },
-  { id: "organic-sunflower-protein-57", name: "Organic/Bio Sunflower Protein 57%", category: "Plant Protein", description: "Organic sunflower seed protein powder with 57% protein content and a subtle nutty, earthy flavor.", details: "The catalogue suggests smoothies, baking, and shakes.", ingredients: ["Sunflower seed protein (Helianthus annuus)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-sunflower-protein-57", image: "https://macrobioticworld.com/cdn/shop/files/SunflowerProtein57_360x.png?v=1759906845" },
-  { id: "organic-flaxseed-protein-34", name: "Organic/Bio Flaxseed Protein 34%", category: "Plant Protein", description: "Flaxseed protein powder with a deep, nutty flavor and 34% protein content.", details: "The catalogue lists smoothies, baking, dressings, and sauces as uses.", ingredients: ["Flaxseed (Linum usitatissimum)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-flaxseed-protein", image: "https://macrobioticworld.com/cdn/shop/files/ProteinsTransparentMockups_360x.png?v=1759906910" },
-  { id: "organic-quinoa-protein", name: "Organic/Bio Vital Vegan Quinoa Protein", category: "Plant Protein", description: "Organic quinoa protein powder with an earthy, nutty flavor; the catalogue lists smoothies and baking as uses.", details: "Made from Chenopodium quinoa. The product page describes a complete amino acid profile with all nine essential amino acids and lists a 500g size.", ingredients: ["Quinoa (Chenopodium quinoa)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-vital-vegan-quinoa-protein", image: "https://macrobioticworld.com/cdn/shop/files/Quinoaprotein500g_360x.png?v=1759906957" },
-  { id: "organic-wormwood-herb-tea", name: "Organic/Bio Wormwood Herb Tea", category: "Herbal & Digestive", description: "A bold, bitter herbal infusion with a distinctive aromatic profile; the catalogue advises enjoying it in moderation.", details: "Ingredients: organic wormwood (Artemisia absinthium). The listed package size is 50g.", ingredients: ["Organic wormwood (Artemisia absinthium)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/wormwood-herb-tea-organic-bio", image: "https://macrobioticworld.com/cdn/shop/files/Copyofwormwoodherbsp_360x.png?v=1765720282" },
-  { id: "black-walnut-husk-capsules", name: "Black Walnut Husk Capsules", category: "Herbal & Digestive", description: "Capsules made from dried green walnut hull; the catalogue lists 450mg of black walnut husk powder per capsule.", details: "The product page recommends short-term use only and lists 90 capsules.", ingredients: ["Black walnut husk powder (450mg per capsule)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/symbiosis-black-walnut-husk-capsules", image: "https://macrobioticworld.com/cdn/shop/files/black-walnut-husk-90-capsules-mockup_360x.png?v=1769714942" },
-  { id: "black-walnut-husk-powder", name: "Black Walnut Husk Powder", category: "Herbal & Digestive", description: "Powder made from the dried green hull of the Black Walnut (Juglans nigra).", details: "The product page lists 100g and advises against long-term daily consumption.", ingredients: ["Black Walnut hull (Juglans nigra)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/black-walnut-husk-powder", image: "https://macrobioticworld.com/cdn/shop/files/symbiosis-black-walnut-husk-superfood-powder100gmockup_360x.png?v=1763631644" },
-  { id: "senna-herbs", name: "Senna Herbs", category: "Herbal & Digestive", description: "Herbal tea made from senna leaves; the product page advises avoiding prolonged use without medical supervision.", details: "The catalogue lists 50g and steeping instructions for preparation as tea.", ingredients: ["Senna leaves"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/symbiosis-senna-herbs", image: "https://macrobioticworld.com/cdn/shop/files/macrobioticworld-organic-bio-senna-50g_360x.png?v=1765085369" },
-  { id: "organic-oregano-herb-tea", name: "Organic/Bio Oregano Herb Tea", category: "Herbal & Digestive", description: "Caffeine-free oregano leaf tea with a robust, earthy flavor and a hint of spiciness.", details: "Made from Origanum vulgare leaves. The catalogue lists a 50g size and tea steeping instructions.", ingredients: ["Oregano leaves (Origanum vulgare)"], priceUSD: null, sourceUrl: "https://macrobioticworld.com/products/organic-bio-oregano-herb-tea", image: "https://macrobioticworld.com/cdn/shop/files/macrobioticworld-organic-bio-oregano-50g_360x.png?v=1765341648" }
-];
+const catalogStorageKey = "mwusa-catalog-edits-v1";
+function loadCatalogRecords() {
+  const imported = (window.MWUSA_CATALOG || []).map((product) => ({ ...product }));
+  try {
+    const saved = JSON.parse(localStorage.getItem(catalogStorageKey) || "null");
+    if (!saved) return imported;
+    const edits = saved.edits && typeof saved.edits === "object" ? saved.edits : {};
+    const editedProducts = imported.map((product) => ({ ...product, ...(edits[product.id] || {}) }));
+    const additions = Array.isArray(saved.additions) ? saved.additions.filter((product) => product && product.id && product.handle && product.name).map((product) => ({ ...product, ...(edits[product.id] || {}) })) : [];
+    return [...editedProducts, ...additions];
+  } catch {
+    return imported;
+  }
+}
+let catalog = loadCatalogRecords();
+let categoryLabels = [...new Set(catalog.map((product) => product.category).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+const pageType = document.body.dataset.pageType || "";
+const initialFeaturedProductIds = [
+  catalog.find((product) => product.handle === "organic-bio-moringa-powder")?.id,
+  catalog.find((product) => product.handle === "organic-bio-oregano-herb-tea")?.id,
+  catalog.find((product) => product.handle === "organic-bio-pumpkin-protein")?.id,
+  catalog.find((product) => /lion.?s mane/i.test(product.name) && /powder/i.test(product.name))?.id
+].filter(Boolean);
+const productSettingsKey = "mwusa-product-settings-v1";
+
+function loadProductSettings() {
+  const defaults = { liveIds: [...initialFeaturedProductIds], featuredIds: [...initialFeaturedProductIds] };
+  try {
+    const saved = JSON.parse(localStorage.getItem(productSettingsKey) || "null");
+    if (!saved || !Array.isArray(saved.liveIds) || !Array.isArray(saved.featuredIds)) return defaults;
+    const knownIds = new Set(catalog.map((product) => product.id));
+    return {
+      liveIds: [...new Set(saved.liveIds.filter((id) => knownIds.has(id)))],
+      featuredIds: [...new Set(saved.featuredIds.filter((id) => knownIds.has(id)))].filter((id) => saved.liveIds.includes(id))
+    };
+  } catch {
+    return defaults;
+  }
+}
+
+let productSettings = loadProductSettings();
+
+function saveProductSettings() {
+  try {
+    localStorage.setItem(productSettingsKey, JSON.stringify(productSettings));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function readCatalogEdits() {
+  try {
+    return JSON.parse(localStorage.getItem(catalogStorageKey) || "null") || { edits: {}, additions: [] };
+  } catch {
+    return { edits: {}, additions: [] };
+  }
+}
+
+function saveCatalogEdit(product, isNew = false) {
+  const saved = readCatalogEdits();
+  const record = {
+    name: product.name,
+    handle: product.handle,
+    category: product.category,
+    description: product.description,
+    image: product.image,
+    images: product.images,
+    priceTHB: product.priceTHB,
+    priceUSD: product.priceUSD,
+    potentialBenefits: product.potentialBenefits,
+    benefitDisclaimer: product.benefitDisclaimer,
+    descriptionReview: "needs-review"
+  };
+  if (isNew) saved.additions = [...(saved.additions || []), product];
+  else saved.edits = { ...(saved.edits || {}), [product.id]: record };
+  try {
+    localStorage.setItem(catalogStorageKey, JSON.stringify(saved));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function initializeProductManager() {
+  const list = document.querySelector("#manager-products");
+  const search = document.querySelector("#manager-search");
+  const category = document.querySelector("#manager-category");
+  const status = document.querySelector("#manager-save-status");
+  const counts = document.querySelector("#manager-counts");
+  const dataQuality = document.querySelector("#manager-data-quality");
+  const pagination = document.querySelector("#manager-pagination");
+  const markupInput = document.querySelector("#manager-markup");
+  const exchangeInput = document.querySelector("#manager-exchange");
+  const priceEstimate = document.querySelector("#manager-price-estimate");
+  const addProductButton = document.querySelector("#manager-add-product");
+  const editor = document.querySelector("#manager-product-editor");
+  const editorForm = document.querySelector("#manager-product-form");
+  const editorCategoryList = document.querySelector("#manager-category-options");
+  let managerPage = 1;
+  const perPage = 40;
+
+  refreshCategoryChoices();
+
+  function refreshCounts() {
+    counts.textContent = `${catalog.length.toLocaleString()} imported · ${productSettings.liveIds.length} live in this preview · ${productSettings.featuredIds.length} selected for homepage`;
+    const missingPhotos = catalog.filter((product) => !product.image).length;
+    const missingDescriptions = catalog.filter((product) => !product.description).length;
+    dataQuality.textContent = `${missingPhotos} products need a photo · ${missingDescriptions} need a description · Review MWC source copy before enabling products.`;
+  }
+
+  function refreshCategoryChoices() {
+    category.replaceChildren(new Option("All categories", "all"), ...categoryLabels.map((label) => new Option(label, label)));
+    editorCategoryList.replaceChildren(...categoryLabels.map((label) => {
+      const option = document.createElement("option");
+      option.value = label;
+      return option;
+    }));
+  }
+
+  function openEditor(product = null) {
+    editorForm.reset();
+    editorForm.elements.productId.value = product?.id || "";
+    editorForm.elements.productName.value = product?.name || "";
+    editorForm.elements.productCategory.value = product?.category || "";
+    editorForm.elements.productDescription.value = product?.description || "";
+    editorForm.elements.productImage.value = product?.image || "";
+    editorForm.elements.productPriceTHB.value = product?.priceTHB ?? "";
+    editorForm.elements.productPriceUSD.value = product?.priceUSD ?? "";
+    editorForm.elements.productBenefits.value = product?.potentialBenefits || "";
+    editorForm.elements.productDisclaimer.value = product?.benefitDisclaimer || "";
+    document.querySelector("#manager-editor-title").textContent = product ? "Edit product details" : "Add a product";
+    editor.showModal();
+  }
+  editor.querySelectorAll("[data-editor-cancel]").forEach((button) => button.addEventListener("click", () => editor.close()));
+
+  function refreshPriceEstimate() {
+    const markup = Number(markupInput.value);
+    const rate = Number(exchangeInput.value);
+    const example = catalog.find((product) => Number.isFinite(product.priceTHB));
+    if (!markupInput.value || !exchangeInput.value || !example || markup < 50 || markup > 70 || rate <= 0) {
+      priceEstimate.textContent = "No USA prices are set. Confirm markup, exchange rate, and rounding before setting prices.";
+      return;
+    }
+    const estimate = (example.priceTHB * (1 + markup / 100)) / rate;
+    priceEstimate.textContent = `Example only: ฿${example.priceTHB.toFixed(2)} for ${example.name} at ${markup}% markup and ${rate} THB per USD is about ${new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(estimate)} before the final rounding rule.`;
+  }
+
+  function makeToggle(labelText, setting, productId, checked) {
+    const label = document.createElement("label");
+    label.className = "manager-toggle";
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.checked = checked;
+    input.dataset[setting === "live" ? "liveProduct" : "featuredProduct"] = productId;
+    const text = document.createElement("span");
+    text.textContent = labelText;
+    label.append(input, text);
+    return label;
+  }
+
+  function renderManagerList() {
+    const query = search.value.trim().toLocaleLowerCase();
+    const categoryValue = category.value;
+    const matches = catalog.filter((product) => {
+      const categoryMatches = categoryValue === "all" || product.category === categoryValue;
+      return categoryMatches && `${product.name} ${product.category}`.toLocaleLowerCase().includes(query);
+    });
+    const pageCount = Math.max(1, Math.ceil(matches.length / perPage));
+    managerPage = Math.min(managerPage, pageCount);
+    const shown = matches.slice((managerPage - 1) * perPage, managerPage * perPage);
+    list.replaceChildren(...shown.map((product) => {
+      const card = document.createElement("article");
+      card.className = "manager-product";
+      card.dataset.productId = product.id;
+      const image = product.image ? document.createElement("img") : document.createElement("div");
+      if (product.image) {
+        image.src = product.image;
+        image.alt = `${product.name} product photo`;
+        image.loading = "lazy";
+      } else {
+        image.className = "manager-no-image";
+        image.textContent = "Photo needed";
+      }
+      const details = document.createElement("div");
+      details.className = "manager-product-details";
+      const name = document.createElement("h2");
+      name.textContent = product.name;
+      const group = document.createElement("p");
+      group.textContent = `${product.category} · ${product.productType || "MWC catalog"} · ${product.priceTHB == null ? "THB price not listed" : `฿${product.priceTHB.toFixed(2)}`}${product.missingImage ? " · photo missing" : ""}${!product.description ? " · description needed" : ""} · source copy needs review`;
+      details.append(name, group);
+      const actions = document.createElement("div");
+      actions.className = "manager-product-actions";
+      actions.append(
+        makeToggle("Live on website", "live", product.id, productSettings.liveIds.includes(product.id)),
+        makeToggle("Show on homepage", "featured", product.id, productSettings.featuredIds.includes(product.id))
+      );
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "manager-edit-button";
+      edit.dataset.editProduct = product.id;
+      edit.textContent = "Edit";
+      actions.append(edit);
+      card.append(image, details, actions);
+      return card;
+    }));
+    status.textContent = `Showing ${(managerPage - 1) * perPage + (matches.length ? 1 : 0)}–${Math.min(managerPage * perPage, matches.length)} of ${matches.length} matching products`;
+    pagination.replaceChildren();
+    if (pageCount > 1) {
+      const previous = document.createElement("button");
+      previous.type = "button";
+      previous.className = "catalog-page-button";
+      previous.textContent = "Previous";
+      previous.disabled = managerPage === 1;
+      previous.addEventListener("click", () => { managerPage -= 1; renderManagerList(); });
+      const next = document.createElement("button");
+      next.type = "button";
+      next.className = "catalog-page-button";
+      next.textContent = "Next";
+      next.disabled = managerPage === pageCount;
+      next.addEventListener("click", () => { managerPage += 1; renderManagerList(); });
+      const pageLabel = document.createElement("span");
+      pageLabel.textContent = `Page ${managerPage} of ${pageCount}`;
+      pagination.append(previous, pageLabel, next);
+    }
+  }
+
+  list.addEventListener("change", (event) => {
+    const input = event.target.closest("input[data-live-product], input[data-featured-product]");
+    if (!input) return;
+    const liveIds = new Set(productSettings.liveIds);
+    const featuredIds = new Set(productSettings.featuredIds);
+    const id = input.dataset.liveProduct || input.dataset.featuredProduct;
+    if (input.dataset.liveProduct) {
+      if (input.checked) liveIds.add(id);
+      else {
+        liveIds.delete(id);
+        featuredIds.delete(id);
+      }
+    } else if (input.checked) {
+      liveIds.add(id);
+      featuredIds.add(id);
+    } else {
+      featuredIds.delete(id);
+    }
+    productSettings = { liveIds: [...liveIds], featuredIds: [...featuredIds] };
+    const row = input.closest(".manager-product");
+    if (!liveIds.has(id)) row.querySelector("[data-featured-product]").checked = false;
+    status.textContent = saveProductSettings() ? "Saved on this device" : "Could not save in this browser";
+    refreshCounts();
+  });
+  list.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-edit-product]");
+    if (!button) return;
+    openEditor(catalog.find((product) => product.id === button.dataset.editProduct));
+  });
+  addProductButton.addEventListener("click", () => openEditor());
+  editorForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = editorForm.elements;
+    const id = form.productId.value;
+    const name = form.productName.value.trim();
+    const categoryName = form.productCategory.value.trim();
+    const description = form.productDescription.value.trim();
+    const image = form.productImage.value.trim();
+    const priceTHB = form.productPriceTHB.value === "" ? null : Number(form.productPriceTHB.value);
+    const priceUSD = form.productPriceUSD.value === "" ? null : Number(form.productPriceUSD.value);
+    let product;
+    const isNew = !id;
+    if (isNew) {
+      const handleBase = name.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `new-product-${Date.now()}`;
+      let handle = handleBase;
+      let suffix = 2;
+      while (catalog.some((entry) => entry.handle === handle)) handle = `${handleBase}-${suffix++}`;
+      product = {
+        id: `mwu-${Date.now()}`, handle, name, vendor: "Macrobiotic World USA", category: categoryName,
+        productType: categoryName, description, sourceDescription: description, descriptionReview: "needs-review",
+        image, images: image ? [image] : [], priceTHB, priceUSD, variants: [], tags: [], sourceUrl: "",
+        live: false, featured: false, potentialBenefits: form.productBenefits.value.trim(),
+        benefitDisclaimer: form.productDisclaimer.value.trim(), missingImage: !image
+      };
+      catalog.push(product);
+    } else {
+      product = catalog.find((entry) => entry.id === id);
+      Object.assign(product, {
+        name, category: categoryName, description, image, images: image ? [image] : [], priceTHB, priceUSD,
+        potentialBenefits: form.productBenefits.value.trim(), benefitDisclaimer: form.productDisclaimer.value.trim(),
+        missingImage: !image, descriptionReview: "needs-review"
+      });
+    }
+    const savedSuccessfully = saveCatalogEdit(product, isNew);
+    categoryLabels = [...new Set(catalog.map((entry) => entry.category).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+    refreshCategoryChoices();
+    managerPage = isNew ? Math.ceil(catalog.length / perPage) : managerPage;
+    renderManagerList();
+    refreshCounts();
+    status.textContent = savedSuccessfully ? "Saved in this browser preview" : "Could not save in this browser";
+    editor.close();
+  });
+  search.addEventListener("input", () => { managerPage = 1; renderManagerList(); });
+  category.addEventListener("change", () => { managerPage = 1; renderManagerList(); });
+  markupInput.addEventListener("input", refreshPriceEstimate);
+  exchangeInput.addEventListener("input", refreshPriceEstimate);
+  refreshPriceEstimate();
+  refreshCounts();
+  renderManagerList();
+}
+
+if (document.body.dataset.pageType === "product-manager") {
+  initializeProductManager();
+} else {
 const cart = new Map();
 let toastTimer;
 let lastFocusedElement;
-let activeCategory = document.body.dataset.category || "all";
-const isHomePage = document.body.dataset.pageType === "home";
+let activeCategory = document.body.dataset.category || new URLSearchParams(window.location.search).get("category") || "all";
+let catalogPage = 1;
+const isHomePage = pageType === "home";
 
 function restoreCart() {
   try {
@@ -109,7 +389,10 @@ function createProductCard(product) {
   meta.append(category, price);
 
   const title = document.createElement("h3");
-  title.textContent = product.name;
+  const productLink = document.createElement("a");
+  productLink.href = `product.html?handle=${encodeURIComponent(product.handle)}`;
+  productLink.textContent = product.name;
+  title.append(productLink);
   const description = document.createElement("p");
   description.className = "product-note";
   description.textContent = product.description;
@@ -121,7 +404,7 @@ function createProductCard(product) {
   const detailCopy = document.createElement("p");
   detailCopy.textContent = product.details;
   detailArea.append(detailSummary, detailCopy);
-  if (product.ingredients.length) {
+  if (product.ingredients?.length) {
     const ingredientList = document.createElement("ul");
     for (const ingredient of product.ingredients) {
       const item = document.createElement("li");
@@ -132,10 +415,8 @@ function createProductCard(product) {
   }
   const detailsLink = document.createElement("a");
   detailsLink.className = "details-link";
-  detailsLink.href = product.sourceUrl;
-  detailsLink.target = "_blank";
-  detailsLink.rel = "noopener noreferrer";
-  detailsLink.textContent = "View official catalogue ↗";
+  detailsLink.href = `product.html?handle=${encodeURIComponent(product.handle)}`;
+  detailsLink.textContent = "View product details →";
   detailArea.append(detailsLink);
 
   const addButton = document.createElement("button");
@@ -143,11 +424,12 @@ function createProductCard(product) {
   addButton.type = "button";
   addButton.dataset.addToCart = "";
   addButton.dataset.productId = product.id;
-  addButton.append(document.createTextNode("Add to bag"));
+  addButton.append(document.createTextNode(Number.isFinite(product.priceUSD) ? "Add to bag" : "Coming soon"));
+  addButton.disabled = !Number.isFinite(product.priceUSD);
   const plus = document.createElement("span");
   plus.setAttribute("aria-hidden", "true");
   plus.textContent = "+";
-  addButton.append(plus);
+  if (!addButton.disabled) addButton.append(plus);
 
   card.append(imageWrap, meta, title, description, detailArea, addButton);
   return card;
@@ -162,15 +444,204 @@ function renderProducts() {
     searchFeedback.textContent = "Search the collection.";
     return;
   }
-  if (homeSearchResults) homeSearchResults.hidden = false;
+  if (homeSearchResults && (isHomePage || pageType === "catalog")) homeSearchResults.hidden = false;
+  if (!productGrid || !productEmpty) return;
   const visibleProducts = catalog.filter((product) => {
     const categoryMatch = activeCategory === "all" || product.category === activeCategory;
-    const searchableText = [product.name, product.category, product.description, product.details, ...product.ingredients].join(" ").toLocaleLowerCase();
-    return categoryMatch && searchableText.includes(query);
+      const searchableText = [product.name, product.category, product.productType, product.description, product.details, ...(product.ingredients || [])].join(" ").toLocaleLowerCase();
+    return productSettings.liveIds.includes(product.id) && categoryMatch && searchableText.includes(query);
   });
-  productGrid.replaceChildren(...visibleProducts.map(createProductCard));
+  const sortMode = document.querySelector("#collection-sort")?.value || "featured";
+  if (sortMode === "name-asc") visibleProducts.sort((a, b) => a.name.localeCompare(b.name));
+  if (sortMode === "name-desc") visibleProducts.sort((a, b) => b.name.localeCompare(a.name));
+  const pageSize = ["catalog", "category"].includes(pageType) ? 24 : visibleProducts.length;
+  const pageCount = Math.max(1, Math.ceil(visibleProducts.length / pageSize));
+  catalogPage = Math.min(catalogPage, pageCount);
+  const pageProducts = visibleProducts.slice((catalogPage - 1) * pageSize, catalogPage * pageSize);
+  productGrid.replaceChildren(...pageProducts.map(createProductCard));
   productEmpty.hidden = visibleProducts.length > 0;
-  searchFeedback.textContent = query ? `${visibleProducts.length} ${visibleProducts.length === 1 ? "product" : "products"} found.` : `${visibleProducts.length} of ${catalog.length} products shown.`;
+  searchFeedback.textContent = query ? `${visibleProducts.length} ${visibleProducts.length === 1 ? "product" : "products"} found.` : `${visibleProducts.length} live products shown.`;
+  const countLabel = document.querySelector("#collection-count");
+  if (countLabel) countLabel.textContent = `${visibleProducts.length} live ${visibleProducts.length === 1 ? "product" : "products"}`;
+  renderCatalogPagination(pageCount);
+}
+
+function renderCatalogPagination(pageCount) {
+  const pagination = document.querySelector("#catalog-pagination");
+  if (!pagination) return;
+  pagination.replaceChildren();
+  if (pageCount < 2) return;
+  for (let page = 1; page <= pageCount; page += 1) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "catalog-page-button";
+    button.textContent = String(page);
+    button.setAttribute("aria-current", String(page === catalogPage));
+    button.addEventListener("click", () => { catalogPage = page; renderProducts(); });
+    pagination.append(button);
+  }
+}
+
+function initializeCollectionPage() {
+  if (!(["catalog", "category"].includes(pageType))) return;
+  const title = document.querySelector("#collection-title");
+  const description = document.querySelector("#collection-description");
+  const filterList = document.querySelector("#category-filter-list");
+  const queryParams = new URLSearchParams(window.location.search);
+  const query = queryParams.get("q");
+  if (query) searchInput.value = query;
+  if (activeCategory !== "all" && !categoryLabels.includes(activeCategory)) activeCategory = "all";
+  if (title) title.textContent = activeCategory === "all" ? "Explore our collection" : activeCategory;
+  if (description) description.textContent = activeCategory === "all" ? "Thoughtfully selected natural foods and everyday essentials." : `Explore ${activeCategory.toLocaleLowerCase()} from the Macrobiotic World USA collection.`;
+  if (filterList) {
+    const links = [["All products", "all"], ...categoryLabels.map((label) => [label, label])].map(([label, category]) => {
+      const link = document.createElement("a");
+      link.className = `filter-button${activeCategory === category ? " is-active" : ""}`;
+      link.href = category === "all" ? "collection.html" : `collection.html?category=${encodeURIComponent(category)}`;
+      link.textContent = label;
+      if (activeCategory === category) link.setAttribute("aria-current", "page");
+      return link;
+    });
+    filterList.replaceChildren(...links);
+  }
+  document.querySelector("#collection-sort")?.addEventListener("change", () => { catalogPage = 1; renderProducts(); });
+  searchInput.addEventListener("input", () => { catalogPage = 1; renderProducts(); });
+}
+
+function initializeProductDetail() {
+  if (pageType !== "product-detail") return;
+  const product = catalog.find((entry) => entry.handle === new URLSearchParams(window.location.search).get("handle"));
+  const status = document.querySelector("#detail-status");
+  const content = document.querySelector("#product-detail-content");
+  if (!product) {
+    content.hidden = true;
+    status.hidden = false;
+    status.textContent = "We could not find that product.";
+    return;
+  }
+  if (!productSettings.liveIds.includes(product.id)) {
+    content.hidden = true;
+    status.hidden = false;
+    status.textContent = "This product is saved in the MWU catalog but is not currently live for customers.";
+    return;
+  }
+  document.title = `${product.name} | Macrobiotic World USA`;
+  document.querySelector("#detail-breadcrumb").textContent = product.name;
+  document.querySelector("#detail-category").textContent = product.category;
+  document.querySelector("#detail-title").textContent = product.name;
+  document.querySelector("#detail-description").textContent = product.description || "Product description will be added after review.";
+  document.querySelector("#detail-price").textContent = Number.isFinite(product.priceUSD) ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(product.priceUSD) : "USA price to be set";
+  const extra = document.querySelector("#detail-extra");
+  const typeLine = document.createElement("p");
+  typeLine.textContent = product.productType ? `Product type: ${product.productType}` : "";
+  const variantWrap = document.querySelector("#detail-variant-wrap");
+  const variantSelect = document.querySelector("#detail-variant");
+  const variants = (product.variants || []).filter((variant) => variant.name && variant.name !== "Default Title");
+  if (variants.length > 1) {
+    variantWrap.hidden = false;
+    variantSelect.replaceChildren(...variants.map((variant) => new Option(variant.name, variant.id)));
+  } else {
+    variantWrap.hidden = true;
+  }
+  const sourceLink = document.createElement("a");
+  sourceLink.href = product.sourceUrl;
+  sourceLink.target = "_blank";
+  sourceLink.rel = "noopener noreferrer";
+  sourceLink.textContent = "View source listing ↗";
+  extra.replaceChildren(typeLine, sourceLink);
+  const gallery = document.querySelector("#detail-main-image-wrap");
+  const thumbnails = document.querySelector("#detail-thumbnails");
+  const images = product.images || [];
+  const setImage = (url, alt) => {
+    const image = document.createElement("img");
+    image.src = url;
+    image.alt = alt;
+    image.loading = "lazy";
+    gallery.replaceChildren(image);
+  };
+  if (images.length) {
+    setImage(images[0], `${product.name} product photo`);
+    thumbnails.replaceChildren(...images.map((url, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.setAttribute("aria-label", `View product photo ${index + 1}`);
+      const image = document.createElement("img");
+      image.src = url;
+      image.alt = "";
+      image.loading = "lazy";
+      button.append(image);
+      button.addEventListener("click", () => setImage(url, `${product.name} product photo ${index + 1}`));
+      return button;
+    }));
+  } else {
+    gallery.textContent = "Product photo coming soon";
+    thumbnails.replaceChildren();
+  }
+  const add = document.querySelector("#detail-add");
+  add.disabled = !Number.isFinite(product.priceUSD);
+  add.textContent = Number.isFinite(product.priceUSD) ? "Add to bag" : "Price coming soon";
+  add.dataset.productId = product.id;
+  add.addEventListener("click", () => addProduct(product.id));
+}
+
+function initializeAdditionalCategoryCards() {
+  const container = document.querySelector("#more-categories");
+  if (!container) return;
+  const featured = new Set(["Herbs & Botanicals", "Mushrooms & Seaweed", "Natural Foods", "Plant Proteins", "Superfoods", "Teas & Herbal Blends"]);
+  const additional = categoryLabels.filter((category) => !featured.has(category));
+  const cardDetails = {
+    "Aromatherapy & Incense": { image: "aromatherapy-incense", description: "Natural aromas, incense and thoughtful home rituals.", action: "Explore Aromatherapy", icon: "<path d='M24 39V24m-8 15h16M17 24c-4-4-3-9 1-12 1-4 3-6 6-8 3 2 5 4 6 8 4 3 5 8 1 12M12 18h5m14 0h5M14 11l-4-3m24 3 4-3'/>" },
+    "Body Care": { image: "body-care", description: "Plant-based care for simple everyday routines.", action: "Explore Body Care", icon: "<path d='M24 5s-12 14-12 22a12 12 0 0 0 24 0C36 19 24 5 24 5Z'/><path d='M18 29c2-5 6-8 12-9-1 6-4 10-10 12'/>" },
+    "Cereals & Breakfast": { image: "cereals-breakfast", description: "Wholegrain starts and nourishing breakfast staples.", action: "Explore Breakfast", icon: "<path d='M24 41V9m0 9c-7 0-11-4-12-10 7 0 11 3 12 10Zm0 8c7 0 11-4 12-10-7 0-11 3-12 10Zm0 8c-6 0-10-3-11-8 6 0 9 2 11 8Z'/>" },
+    "Coffee, Tea & Beverages": { image: "coffee-tea-beverages", description: "Everyday drinks, herbal infusions and pantry blends.", action: "Explore Beverages", icon: "<path d='M10 18h23v12a9 9 0 0 1-9 9h-5a9 9 0 0 1-9-9V18Zm23 3h4a5 5 0 0 1 0 10h-5M17 12c-2-2 2-3 0-6m8 6c-2-2 2-3 0-6'/>" },
+    "Condiments & Pantry": { image: "condiments-pantry", description: "Seasonings and pantry companions for everyday meals.", action: "Explore Condiments", icon: "<path d='M18 9V5h12v4m-10 0h8l3 5v21H17V14l3-5Zm-1 11h14M22 26h6'/>" },
+    "Dried Fruits & Nuts": { image: "dried-fruits-nuts", description: "Naturally sweet fruit, nuts and wholesome staples.", action: "Explore Fruit & Nuts", icon: "<path d='M24 12c-8-8-17-1-14 8 2 7 7 13 14 18 7-5 12-11 14-18 3-9-6-16-14-8Z'/><path d='M24 12c0-5 3-8 8-9-1 5-3 8-8 9'/>" },
+    "Flours & Baking": { image: "flours-baking", description: "Wholegrain flours and natural baking essentials.", action: "Explore Baking", icon: "<path d='M8 23h32l-4 16H12L8 23Zm4 0 8-14h12l8 14M24 9V5m-8 34h16'/>" },
+    "Grains, Legumes & Seeds": { image: "grains-legumes-seeds", description: "Everyday grains, pulses and nourishing seeds.", action: "Explore Grains & Seeds", icon: "<path d='M24 41V8m0 13c-8 0-12-4-13-11 7 0 11 3 13 11Zm0 8c8 0 12-4 13-11-7 0-11 3-13 11Zm0-13c5-7 10-8 16-6-3 6-8 8-16 6Z'/>" },
+    "Home & Lifestyle": { image: "home-lifestyle", description: "Thoughtful everyday goods for a more natural home.", action: "Explore Home", icon: "<path d='m6 22 18-15 18 15M11 19v20h26V19M20 39V27h8v12'/><path d='M34 11V6h5v9'/>" },
+    "Oils & Vinegars": { image: "oils-vinegars", description: "Carefully selected oils and vinegars for the table.", action: "Explore Oils & Vinegars", icon: "<path d='M24 5s-13 15-13 24a13 13 0 0 0 26 0C37 20 24 5 24 5Z'/><path d='M19 30c2 4 5 5 9 5'/>" },
+    "Pasta & Noodles": { image: "pasta-noodles", description: "Pantry staples for simple, satisfying meals.", action: "Explore Pasta", icon: "<path d='M8 25h32c-1 9-7 14-16 14S9 34 8 25Zm4-5 12 5m-4-9 9 9m3-12-4 12'/>" },
+    "Snacks & Bars": { image: "snacks-bars", description: "Convenient bites made with familiar ingredients.", action: "Explore Snacks", icon: "<path d='M9 24h30a15 15 0 0 1-30 0Zm5-5c1-7 6-12 10-12s9 5 10 12m-20 21h20'/>" },
+    "Spreads & Butters": { image: "spreads-butters", description: "Nut and seed spreads for toast, bowls and more.", action: "Explore Spreads", icon: "<path d='M12 14h24l-2 26H14l-2-26Zm4 0V9h16v5m-11 9c4-4 8-4 12-2'/>" },
+    "Supplements & Wellness": { image: "supplements-wellness", description: "Browse vitamins, minerals and wellness essentials.", action: "Explore Supplements", icon: "<path d='M14 34a8 8 0 0 1 0-11l11-11a8 8 0 0 1 11 11L25 34a8 8 0 0 1-11 0Z'/><path d='m20 17 11 11'/>" },
+    "Vegan Cheese": { image: "vegan-cheese", description: "Plant-based choices for sharing and everyday meals.", action: "Explore Vegan Cheese", icon: "<path d='M8 35 13 9l27 18-1 8H8Zm5-26 3 16m9-11-2 9m8-5-1 7'/>" }
+  };
+  container.replaceChildren(...additional.map((category) => {
+    const details = cardDetails[category];
+    const link = document.createElement("a");
+    link.className = "catalog-category-tile";
+    link.href = `collection.html?category=${encodeURIComponent(category)}`;
+    const image = document.createElement("img");
+    image.src = `assets/reference/shop-by-product/extra-categories/${details?.image || "grains-legumes-seeds"}.jpg`;
+    image.alt = `${category} natural ingredients`;
+    image.loading = "lazy";
+    image.className = "catalog-category-photo";
+    const copy = document.createElement("span");
+    copy.className = "catalog-category-copy";
+    const icon = document.createElement("span");
+    icon.className = "catalog-category-icon";
+    icon.setAttribute("aria-hidden", "true");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 48 48");
+    svg.innerHTML = details?.icon || "<path d='M8 24h32M24 8v32'/>";
+    icon.append(svg);
+    const title = document.createElement("span");
+    title.className = "catalog-category-title";
+    title.textContent = category;
+    const description = document.createElement("span");
+    description.className = "catalog-category-description";
+    description.textContent = details?.description || `Browse the ${category.toLocaleLowerCase()} collection.`;
+    const action = document.createElement("span");
+    action.className = "catalog-category-action";
+    action.append(document.createTextNode(details?.action || "Explore products"));
+    const arrow = document.createElement("span");
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "→";
+    action.append(arrow);
+    copy.append(icon, title, description, action);
+    link.append(image, copy);
+    return link;
+  }));
 }
 
 function setCategory(category) {
@@ -183,11 +654,15 @@ function setCategory(category) {
   renderProducts();
 }
 
+initializeCollectionPage();
+initializeProductDetail();
+initializeAdditionalCategoryCards();
 renderProducts();
 
 if (homeFeaturedGrid) {
-  const featuredIds = ["organic-lions-mane-powder", "organic-moringa-powder", "organic-oregano-herb-tea", "organic-pumpkin-protein-65"];
-  const featuredProducts = featuredIds.map((id) => catalog.find((product) => product.id === id)).filter(Boolean);
+  const featuredProducts = productSettings.featuredIds
+    .filter((id) => productSettings.liveIds.includes(id))
+    .map((id) => catalog.find((product) => product.id === id)).filter(Boolean);
   homeFeaturedGrid.replaceChildren(...featuredProducts.map(createProductCard));
 }
 
@@ -304,7 +779,7 @@ function renderCart() {
 
 function addProduct(id) {
   const product = catalog.find((entry) => entry.id === id);
-  if (!product) return;
+  if (!product || !Number.isFinite(product.priceUSD)) return;
   const existing = cart.get(id);
   cart.set(id, { product, quantity: (existing?.quantity ?? 0) + 1 });
   renderCart();
@@ -316,7 +791,7 @@ function handleProductGridClick(event) {
   if (button) addProduct(button.dataset.productId);
 }
 
-productGrid.addEventListener("click", handleProductGridClick);
+productGrid?.addEventListener("click", handleProductGridClick);
 homeFeaturedGrid?.addEventListener("click", handleProductGridClick);
 
 cartItems.addEventListener("click", (event) => {
@@ -347,6 +822,28 @@ searchToggle.addEventListener("click", () => {
 });
 
 searchInput.addEventListener("input", renderProducts);
+searchInput.addEventListener("keydown", (event) => { if (event.key === "Enter" && !["home", "catalog", "category"].includes(pageType)) { event.preventDefault(); const term = searchInput.value.trim(); window.location.href = `collection.html${term ? `?q=${encodeURIComponent(term)}` : ""}`; } });
+const needSearchForm = document.querySelector(".need-search-form");
+if (needSearchForm) {
+  needSearchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const rawQuery = document.querySelector("#need-search-input").value.trim();
+    if (!rawQuery) return;
+    const needCategory = [
+      [/digestion|digestive|gut|bloat|stomach/i, "Teas & Herbal Blends"],
+      [/energy|vitality|focus|fatigue/i, "Superfoods"],
+      [/sleep|relax|stress|calm|anxious/i, "Teas & Herbal Blends"],
+      [/immune|immunity/i, "Mushrooms & Seaweed"],
+      [/women|hormone/i, "Herbs & Botanicals"],
+      [/joint|mobility|flexibility/i, "Supplements & Wellness"],
+      [/heart|circulation/i, "Superfoods"],
+      [/detox|cleanse|cleansing|liver/i, "Herbs & Botanicals"]
+    ].find(([pattern]) => pattern.test(rawQuery))?.[1];
+    searchInput.value = needCategory || rawQuery;
+    searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+    homeSearchResults?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
 document.querySelector(".search-clear").addEventListener("click", () => {
   searchInput.value = "";
   renderProducts();
@@ -395,4 +892,5 @@ if (newsletterForm) {
     message.textContent = "Thanks for your interest. Newsletter signup will be connected before launch.";
     email.value = "";
   });
+}
 }
